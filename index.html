@@ -5,6 +5,7 @@
 </head>
 <body>
     <button onclick="generateUUID()">Generate UUID</button>
+    <p id="uuid"></p>
 
     <script>
         function generateUUID() {
@@ -28,8 +29,9 @@
             document.execCommand("copy");
             document.body.removeChild(tempInput);
 
-            // コピー完了のメッセージを表示
-            alert("UUID copied to clipboard: " + uuid);
+            // UUIDを画面上に表示
+            var uuidElement = document.getElementById("uuid");
+            uuidElement.textContent = "Generated UUID: " + uuid;
         }
     </script>
 </body>
