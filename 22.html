@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSONファイルのダウンロード</title>
+</head>
+<body>
+    <button onclick="downloadJSON()">JSONファイルをダウンロード</button>
+
+    <script>
+        function downloadJSON() {
+            const jsonContent = {
+                name: "John Doe",
+                age: 30,
+                email: "johndoe@example.com"
+            };
+
+            const jsonData = JSON.stringify(jsonContent);
+            const blob = new Blob([jsonData], { type: "application/json" });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "data.json";
+            link.click();
+        }
+    </script>
+</body>
+</html>
