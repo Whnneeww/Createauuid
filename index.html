@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UUID Generator</title>
+</head>
+<body>
+    <button onclick="generateUUID()">Generate UUID</button>
+
+    <script>
+        function generateUUID() {
+            // UUIDを生成するための関数
+            function uuidv4() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0,
+                        v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+
+            // UUIDを生成
+            var uuid = uuidv4();
+
+            // 生成されたUUIDをクリップボードにコピー
+            var tempInput = document.createElement("input");
+            tempInput.value = uuid;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // コピー完了のメッセージを表示
+            alert("UUID copied to clipboard: " + uuid);
+        }
+    </script>
+</body>
+</html>
