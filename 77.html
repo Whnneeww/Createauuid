@@ -5,6 +5,7 @@
 </head>
 <body>
     <input type="file" id="fileInput">
+    <input type="text" id="newExtension" placeholder="新しい拡張子を入力">
     <button onclick="changeExtension()">拡張子変更</button>
 
     <script>
@@ -12,7 +13,8 @@
             const fileInput = document.getElementById("fileInput");
             const file = fileInput.files[0];
 
-            const newFileName = file.name.replace(/\.[^/.]+$/, ".newExtension");
+            const newExtension = document.getElementById("newExtension").value;
+            const newFileName = file.name.replace(/\.[^/.]+$/, "") + "." + newExtension;
 
             const blob = file.slice(0, file.size, file.type);
             const newFile = new File([blob], newFileName, { type: file.type });
