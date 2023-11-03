@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON File Creator</title>
+</head>
+<body>
+    <button onclick="createJSON()">Create JSON File</button>
+
+    <script>
+        function createJSON() {
+            // JSONデータを作成
+            var jsonData = {
+                name: "John Doe",
+                age: 30,
+                email: "johndoe@example.com"
+            };
+
+            // JSONデータをテキストに変換
+            var jsonString = JSON.stringify(jsonData, null, 2);
+
+            // ファイルを作成し、ダウンロードさせる
+            var blob = new Blob([jsonString], { type: "application/json" });
+            var url = URL.createObjectURL(blob);
+
+            var link = document.createElement("a");
+            link.href = url;
+            link.download = "data.json";
+            link.click();
+        }
+    </script>
+</body>
+</html>
