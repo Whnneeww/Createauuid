@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ファイルの拡張子変更</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button onclick="changeExtension()">拡張子変更</button>
+
+    <script>
+        function changeExtension() {
+            const fileInput = document.getElementById("fileInput");
+            const file = fileInput.files[0];
+
+            const newFileName = file.name.replace(/\.[^/.]+$/, ".newExtension");
+
+            const blob = file.slice(0, file.size, file.type);
+            const newFile = new File([blob], newFileName, { type: file.type });
+
+            const url = URL.createObjectURL(newFile);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = newFile.name;
+            link.click();
+        }
+    </script>
+</body>
+</html>
